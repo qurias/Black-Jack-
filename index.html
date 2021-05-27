@@ -1,50 +1,73 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
-</head>
-<body>
-  <div class="pop-up-window-start">
+  </head>
+  <body>
+    <!-- <div class="pop-up-window-start">
     <p class="window-start_p random-color">Welcome to the game!</p>
     <h1 class="window-start_h1 random-color">Black Jack</h1>
     <button class="window-start_button">Start</button>
-  </div>
-  <div class="game">
-    <h1 class="game-title random-color">Black Jack</h1>
-    <div class="game-table">
-      <div class="text-moneys-bet">
-        <p class="your-moneys">Your moneys: <span class="js-money">100</span>$</p>
-        <p class="your-bet">Your bet: <span class="js-bet">5</span>$</p>
-      </div>
-      <div class="table__section-dealer">
-        <p class="dealer-title">Dealer:</p>
-        <div class="pack-card"></div>
-      </div>
-      <div class="table__section-players">
-        <div class="player-one">
-          <p class="player-one__name">Your Score:<span class="your-score"> 0</span></p>
-          <div class="player-one__button">
-            <p class="text-bet">Bet</p>
-            <ul>
-              <li class="button__plus"><button>+</button></li>
-              <li class="button__minus"><button>-</button></li>
-              <li class="button__deal"><button class="off_add_card">Deal</button></li>
-              <li class="button__stand"><button>Stand</button></li>
-            </ul>
-          </div>
-          <div class="player-one__cards"></div>
+  </div> -->
+    <div class="game">
+      <h1 class="game-title random-color">Black Jack</h1>
+      <div class="game-table">
+        <div class="text-moneys-bet">
+          <p class="your-moneys">
+            Your moneys: <span class="js-money">100</span>$
+          </p>
+          <p class="your-bet">Your bet: <span class="js-bet">5</span>$</p>
         </div>
-        <div class="player-two">
-          <p class="player-two__name">Bot Score:<span class="bot-score"> 0</span></p>
-          <div class="player-two__cards"></div>
+        <div class="table__section-dealer">
+          <p class="dealer-title">Dealer:</p>
+          <div class="pack-card"></div>
+        </div>
+        <div class="table__section-players">
+          <div class="player-one">
+            <p class="player-one__name">
+              Your Score:<span class="your-score"> 0</span>
+            </p>
+            <div class="player-one__button">
+              <p class="text-bet">Bet</p>
+              <ul>
+                <li class="button__plus"><button class="off_button_plus">+</button></li>
+                <li class="button__minus"><button class="off_button_minus">-</button></li>
+                <li class="button__deal">
+                  <button class="off_button_deal">Deal</button>
+                </li>
+                <li class="button__hit">
+                  <button class="off_button_hit" disabled="disabled">
+                    Hit
+                  </button>
+                </li>
+                <li class="button__stand">
+                  <button class="off_button_stand" disabled="disabled">
+                    Stand
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div class="player-one__cards"></div>
+          </div>
+          <div class="player-two">
+            <p class="player-two__name">
+              Bot Score:<span class="bot-score"> 0</span>
+            </p>
+            <div class="player-two__cards"></div>
+          </div>
+        </div>
+      </div>
+      <div class="a-popup">
+        <div class="a-popup-content">
+          <div class="a-popup__text"></div>
+          <div><button class="a-popup__button">RESUME</button></div>
         </div>
       </div>
     </div>
-  </div>
-  <script src='script.js'></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
