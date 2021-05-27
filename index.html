@@ -8,11 +8,43 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="pop-up-window-start">
-        <p class="window-start_p">Welcome to the game!</p>
-        <h1 class="window-start_h1">Black Jack</h1>
-        <button class="window-start_button">Start</button>
+  <div class="pop-up-window-start">
+    <p class="window-start_p random-color">Welcome to the game!</p>
+    <h1 class="window-start_h1 random-color">Black Jack</h1>
+    <button class="window-start_button">Start</button>
+  </div>
+  <div class="game">
+    <h1 class="game-title random-color">Black Jack</h1>
+    <div class="game-table">
+      <div class="text-moneys-bet">
+        <p class="your-moneys">Your moneys: <span class="js-money">100</span>$</p>
+        <p class="your-bet">Your bet: <span class="js-bet">5</span>$</p>
+      </div>
+      <div class="table__section-dealer">
+        <p class="dealer-title">Dealer:</p>
+        <div class="pack-card"></div>
+      </div>
+      <div class="table__section-players">
+        <div class="player-one">
+          <p class="player-one__name">Your Score:<span class="your-score"> 0</span></p>
+          <div class="player-one__button">
+            <p class="text-bet">Bet</p>
+            <ul>
+              <li class="button__plus"><button>+</button></li>
+              <li class="button__minus"><button>-</button></li>
+              <li class="button__deal"><button class="off_add_card">Deal</button></li>
+              <li class="button__stand"><button>Stand</button></li>
+            </ul>
+          </div>
+          <div class="player-one__cards"></div>
+        </div>
+        <div class="player-two">
+          <p class="player-two__name">Bot Score:<span class="bot-score"> 0</span></p>
+          <div class="player-two__cards"></div>
+        </div>
+      </div>
     </div>
-    <script src='script.js'></script>
+  </div>
+  <script src='script.js'></script>
 </body>
 </html>
