@@ -19,7 +19,7 @@ function randomBJcolor() {
 }
 randomBJcolor();
 
-function hidePopUp() {
+function hideStartWindow() {
   $('.window-start_button').bind('click', () => {
     $('.pop-up-window-start').css('opacity', '0');
     setTimeout(() => {
@@ -29,13 +29,13 @@ function hidePopUp() {
   });
 }
 
-hidePopUp();
+hideStartWindow();
 
 function game() {
   popUpHide();
 
   const SUIT = ['♥', '♦', '♣', '♠'];
-  const VALUES = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  const VALUES = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 
   class Card {
     constructor(suit, value) {
@@ -75,15 +75,21 @@ function game() {
     if(limiting_card <= 0) {
       $('.off_button_hit').removeAttr('disabled');
     }
-    else if (limiting_card >= 3) {
+    else if (limiting_card > 7) {
       $('.off_button_hit').attr('disabled', 'disabled');
     }
     let random_card = Math.floor(Math.random() * deck.cards.length);
     let cardDiv = document.createElement('div');
+    let cardP = document.createElement('p');
     $(cardDiv).addClass('player-one-card');
-    $(cardDiv).html(
-      deck.cards[random_card].value + deck.cards[random_card].suit
-    );
+    if (
+      deck.cards[random_card].suit == '♥' ||
+      deck.cards[random_card].suit == '♦'
+    ) {
+      $(cardP).css('color', 'red');
+    }
+    $(cardP).html(deck.cards[random_card].value + deck.cards[random_card].suit);
+    $(cardDiv).html(cardP);
     $('.player-one__cards').append(cardDiv);
     limiting_card++;
     scorePeople(random_card);
@@ -93,20 +99,19 @@ function game() {
     let your_score = $('.your-score').html();
     if (deck.cards[random_card].value == 'A') {
       $('.your-score').html(+your_score + 11);
-    } 
-    else if (deck.cards[random_card].value == 'K') {
-      $('.your-score').html(+your_score + 4);
-    } 
-    else if (deck.cards[random_card].value == 'Q') {
-      $('.your-score').html(+your_score + 3);
-    } 
-    else if (deck.cards[random_card].value == 'J') {
-      $('.your-score').html(+your_score + 2);
-    } 
-    else {
+    } else if (
+      deck.cards[random_card].value == 'K' ||
+      deck.cards[random_card].value == 'Q' ||
+      deck.cards[random_card].value == 'J'
+    ) {
+      $('.your-score').html(+your_score + 10);
+    } else {
       $('.your-score').html(+your_score + +deck.cards[random_card].value);
     }
     deck.cards.splice(random_card, 1);
+    if ($('.your-score').html() > 21) {
+      result();
+    }
   }
 
   // BOT SETTINGS //
@@ -114,11 +119,16 @@ function game() {
   function addCardHTMLbot() {
     let random_card = Math.floor(Math.random() * deck.cards.length);
     let cardDiv = document.createElement('div');
-    cardDiv.setAttribute('color', this.color);
+    let cardP = document.createElement('p');
     $(cardDiv).addClass('player-two-card');
-    $(cardDiv).html(
-      deck.cards[random_card].value + deck.cards[random_card].suit
-    );
+    if (
+      deck.cards[random_card].suit == '♥' ||
+      deck.cards[random_card].suit == '♦'
+    ) {
+      $(cardP).css('color', 'red');
+    }
+    $(cardP).html(deck.cards[random_card].value + deck.cards[random_card].suit);
+    $(cardDiv).html(cardP);
     $('.player-two__cards').append(cardDiv);
     scoreBot(random_card);
   }
@@ -129,17 +139,13 @@ function game() {
     let bot_score = $('.bot-score').html();
     if (deck.cards[random_card].value == 'A') {
       $('.bot-score').html(+bot_score + 11);
-    } 
-    else if (deck.cards[random_card].value == 'K') {
-      $('.bot-score').html(+bot_score + 4);
-    } 
-    else if (deck.cards[random_card].value == 'Q') {
-      $('.bot-score').html(+bot_score + 3);
-    } 
-    else if (deck.cards[random_card].value == 'J') {
-      $('.bot-score').html(+bot_score + 2);
-    } 
-    else {
+    } else if (
+      deck.cards[random_card].value == 'K' ||
+      deck.cards[random_card].value == 'Q' ||
+      deck.cards[random_card].value == 'J'
+    ) {
+      $('.bot-score').html(+bot_score + 10);
+    } else {
       $('.bot-score').html(+bot_score + +deck.cards[random_card].value);
     }
     deck.cards.splice(random_card, 1);
@@ -153,10 +159,11 @@ function game() {
 
   function logics() {
     setTimeout(() => {
-      if ($('.bot-score').html() <= 12) {
-        addCardHTMLbot();
-      } 
-      else if ($('.bot-score').html() < $('.your-score').html() && $('.your-score').html() <= 21 ) {
+      let bet_score = $('.bot-score').html();
+      let people_score = $('.your-score').html();
+      if (
+        +bet_score < +people_score 
+      ) {
         addCardHTMLbot();
       } else {
         result();
@@ -168,41 +175,51 @@ function game() {
     let result_people = $('.your-score').html();
     let result_bot = $('.bot-score').html();
     if (+result_people < +result_bot && +result_bot <= 21) {
-      $('.a-popup__text').append(`<p class="a-popup__text">BOT WIN!</p>`);
+      $('.a-popup__text').append(
+        `<p class="a-popup__p random-color">BOT WIN!</p>`
+      );
     } 
     else if (+result_people > +result_bot && +result_people <= 21) {
-      $('.a-popup__text').append(`<p class="a-popup__text">YOU WIN!</p>`);
+      $('.a-popup__text').append(
+        `<p class="a-popup__p random-color">YOU WIN!</p>`
+      );
     } 
     else if (+result_people == +result_bot) {
-      $('.a-popup__text').append(`<p class="a-popup__text">DRAW!</p>`);
+      $('.a-popup__text').append(
+        `<p class="a-popup__p random-color">DRAW!</p>`
+      );
     } 
     else if (+result_people > 21 && +result_bot <= 21) {
-      $('.a-popup__text').append(`<p class="a-popup__text">BOT WIN!</p>`);
+      $('.a-popup__text').append(
+        `<p class="a-popup__p random-color">BOT WIN!</p>`
+      );
     } 
     else if (+result_people <= 21 && +result_bot > 21) {
-      $('.a-popup__text').append(`<p class="a-popup__text">YOU WIN!</p>`);
+      $('.a-popup__text').append(
+        `<p class="a-popup__p random-color">YOU WIN!</p>`
+      );
     } 
     else {
-      $('.a-popup__text').append(`<p>DRAW!</p>`);
+      $('.a-popup__text').append(
+      `<p class="a-popup__p random-color">DRAW!</p>`
+      );
     }
     сalculateMoney();
-    setTimeout(() => {
-      popUpShow();
-    }, 500);
+    popUpShow();
   }
 
   // CALCULATE MONEY //
 
   function сalculateMoney() {
-    let popupText = $('.a-popup__text').html();
-    if (popupText == '<p class="a-popup__text">YOU WIN!</p>') {
+    let popupText = $('.a-popup__p').html();
+    if (popupText == `YOU WIN!`) {
       let your_bet = $('.js-bet').html();
       let your_money = $('.js-money').html();
       $('.js-money').html(+your_money + +your_bet);
-    } else if (popupText == '<p class="a-popup__text">BOT WIN!</p>') {
-        let your_bet = $('.js-bet').html();
-        let your_money = $('.js-money').html();
-        $('.js-money').html(+your_money - +your_bet);
+    } else if (popupText == `BOT WIN!`) {
+      let your_bet = $('.js-bet').html();
+      let your_money = $('.js-money').html();
+      $('.js-money').html(+your_money - +your_bet);
     } 
   }
 
@@ -240,12 +257,7 @@ function game() {
     $('.button__stand').bind('click', () => {
       $('.off_button_hit').attr('disabled', 'disabled');
       $('.off_button_stand').attr('disabled', 'disabled');
-      if ($('.your-score').html() > 21) {
-        result();
-      }
-      else {
         addCardHTMLbot();
-      }
     });
     $('.button__hit').bind('click', () => {
       addCardHTMLpeople();
@@ -289,6 +301,18 @@ function game() {
     $('.off_button_minus').removeAttr('disabled');
     i = 0
     limiting_card = 0
+    let stop_game = $('.js-money').html();
+    if (+stop_game == 0) {
+      stopGame();
+    }
+  }
+
+  function stopGame() {
+    $('.off_button_deal').attr('disabled', 'disabled');
+    $('.off_button_plus').attr('disabled', 'disabled');
+    $('.off_button_minus').attr('disabled', 'disabled');
+    $('.off_button_stand').attr('disabled', 'disabled');
+    $('.off_button_hit').attr('disabled', 'disabled');
   }
 }
 game();
