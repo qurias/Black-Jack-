@@ -53,7 +53,7 @@ body {
   100% {
     opacity: 1; } }
 .game {
-  display: none;
+  display: flex;
   width: 100%;
   height: 100%;
   animation: anim_open 0.5s;
@@ -89,6 +89,7 @@ body {
         font-size: 20px;
         color: #f0f0f0; }
       .game .game-table .text-moneys-bet span {
+        margin-top: 10px;
         font-size: 20px;
         color: #f0f0f0; }
       .game .game-table .text-moneys-bet .player-one__bet {
@@ -97,6 +98,7 @@ body {
         margin-left: 10px;
         margin-top: 10px; }
         .game .game-table .text-moneys-bet .player-one__bet span {
+          margin-top: 10px;
           font-size: 30px;
           color: #f0f0f0; }
     .game .game-table .table__section-dealer {
@@ -105,8 +107,7 @@ body {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      border-bottom: 2px solid black; }
+      flex-direction: column; }
       .game .game-table .table__section-dealer .pack-card {
         width: 140px;
         height: 200px;
@@ -294,5 +295,88 @@ body {
     opacity: 0; }
   100% {
     opacity: 1; } }
+@media all and (max-width: 812px) {
+  .pop-up-window-start .window-start_p {
+    font-size: 30px; }
+  .pop-up-window-start .window-start_h1 {
+    font-size: 100px; }
+
+  .game .game-title {
+    margin-bottom: 10px; }
+  .game .game-table {
+    width: 600px;
+    height: 250px; }
+    .game .game-table .text-moneys-bet .your-moneys {
+      font-size: 12px;
+      margin-top: 2px; }
+    .game .game-table .text-moneys-bet .your-bet {
+      font-size: 12px;
+      margin-top: 2px; }
+    .game .game-table .text-moneys-bet span {
+      font-size: 12px;
+      margin-top: 2px; }
+    .game .game-table .text-moneys-bet .player-one__bet {
+      margin-top: 2px;
+      font-size: 12px; }
+      .game .game-table .text-moneys-bet .player-one__bet span {
+        font-size: 12px;
+        margin-top: 2px; }
+    .game .game-table .table__section-dealer .pack-card {
+      width: 40px;
+      height: 70px; }
+    .game .game-table .table__section-dealer .dealer-title {
+      font-size: 16px; }
+    .game .game-table .table__section-players .player-one .player-one__cards .player-one-card {
+      width: 40px;
+      height: 70px;
+      font-size: 20px; }
+    .game .game-table .table__section-players .player-one .player-one__button {
+      margin-top: 10px;
+      font-size: 12px; }
+      .game .game-table .table__section-players .player-one .player-one__button .button__plus {
+        width: 40px;
+        height: 25px;
+        font-size: 12px;
+        margin-right: 5px; }
+      .game .game-table .table__section-players .player-one .player-one__button .button__minus {
+        margin-right: 15px;
+        font-size: 12px;
+        width: 40px;
+        height: 25px; }
+      .game .game-table .table__section-players .player-one .player-one__button .button__deal {
+        margin-right: 5px;
+        font-size: 12px;
+        width: 50px;
+        height: 25px; }
+      .game .game-table .table__section-players .player-one .player-one__button .button__stand {
+        margin-right: 5px;
+        font-size: 12px;
+        width: 50px;
+        height: 25px; }
+      .game .game-table .table__section-players .player-one .player-one__button .button__hit {
+        margin-right: 5px;
+        font-size: 12px;
+        width: 50px;
+        height: 25px; }
+      .game .game-table .table__section-players .player-one .player-one__button .text-bet {
+        margin-right: 10px;
+        font-size: 20px; }
+    .game .game-table .table__section-players .player-two .player-two__cards .player-two-card {
+      width: 40px;
+      height: 70px;
+      font-size: 20px; }
+    .game .game-table .table__section-players .player-two .player-two__bet {
+      font-size: 12px;
+      top: 5px; }
+  .game .a-popup .a-popup-content {
+    width: 400px;
+    height: 150px; }
+    .game .a-popup .a-popup-content .a-popup__p {
+      font-size: 60px; }
+    .game .a-popup .a-popup-content .a-popup__button {
+      margin-top: 10px;
+      width: 70px;
+      height: 35px;
+      font-size: 12px; } }
 
 /*# sourceMappingURL=style.css.map */
